@@ -1,0 +1,4 @@
+#Mon Nov 18 14:04:58 GFT 2019
+base.0=D\:\\FlutterProjects\\Flutter-CRUD-phpMyAdmin-master\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
