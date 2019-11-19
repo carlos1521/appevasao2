@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:multi_charts/multi_charts.dart';
 import 'package:mystore/estrategias/orientacaopedagogica.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import '../editdata.dart';
 import '../home.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_sparkline/flutter_sparkline.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_circular_chart/flutter_circular_chart.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 
 class Latab2 extends StatefulWidget {
   List list;
@@ -24,6 +21,11 @@ class MyItem {
   final String body;
 }
 
+class SalesData {
+  SalesData(this.year, this.sales);
+  final String year;
+  final double sales;
+}
 
 class _Latab2State extends State<Latab2> {
 
@@ -72,202 +74,43 @@ class _Latab2State extends State<Latab2> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body:
-      Column(
-          children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromARGB( 100, 0, 0, 0 ),
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  padding: const EdgeInsets.all( 20.0 ),
-                  child: new Column(
-                    children: <Widget>[
-                      new Padding(
-                        padding: const EdgeInsets.only( top: 30.0 ), ),
-                      new Text( widget.list[widget.index]['nombre'],
-                        style: new TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold ), ),
-                      new Text(
-                        "Matrícula : ${widget.list[widget.index]['idaluno']}",
-                        style: new TextStyle( fontSize: 18.0 ), ),
-                      new Text( "Curso : ${widget.list[widget
-                          .index]['cursograduacao']}",
-                        style: new TextStyle( fontSize: 18.0 ), ),
-                      new Text( "Idade : ${widget.list[widget.index]['idade']}",
-                        style: new TextStyle( fontSize: 18.0 ), ),
-                      new Text( "Periodo Ingresso : ${widget.list[widget
-                          .index]['periodoingresso']}",
-                        style: new TextStyle( fontSize: 18.0 ), ),
-                      new Padding(
-                        padding: const EdgeInsets.only( top: 30.0 ), ),
-                      new Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          new RaisedButton(
-                            child: widget.list[widget.index]['class'] ==
-                                'CONCLUIDO' ? Text( "Perfil Normal" ) : Text(
-                                "Risco de Evasão" ),
-                            color: widget.list[widget.index]['class'] ==
-                                'CONCLUIDO' ? Colors.green : Colors.red,
-                            onPressed: () =>
-                                Navigator.of( context ).push(
-                                    new MaterialPageRoute(
-                                      builder: (
-                                          BuildContext context) => new EditData(
-                                        list: widget.list,
-                                        index: widget.index, ),
-                                    )
-                                ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
+      ListView(
+        padding: const EdgeInsets.all(8),
+        children: <Widget>[
+          Container(
+            height: 50,
+            color: Colors.lightBlueAccent,
+            child: const Center(child: Text('Média  do Aluno')),
+          ),
+          Container(
+              child: SfCircularChart(
 
-              child: new ListView(
-                shrinkWrap: true,
-                children: <Widget>[
-                  ExpansionTile(
-                    leading: Icon( Icons.school ),
-                    title: Text( 'Ver Rendimento Académico' ),
-                    children: <Widget>[
-                      ListTile(
-                          title: Text(
-                              "Nota Exame Admissão: ${widget.list[widget
-                                  .index]['notaexameadmissao']}" )
-                      ),
-                      ListTile(
-                        title: Text( "Total Níveis Curso: ${widget.list[widget
-                            .index]['totalniveiscurso']}" ),
-                      ),
-                      ListTile(
-                        title: Text( "Total Creditos Curso: ${widget.list[widget
-                            .index]['totalcreditoscurso']}" ),
-                      ),
-                      ListTile(
-                        title: Text(
-                            "Total Níveis Cursados: ${widget.list[widget
-                                .index]['totalniveiscursados']}" ),
-                      ),
-                      ListTile(
-                        title: Text( "% Níveis Cursados: ${widget.list[widget
-                            .index]['porcentagemniveiscursados']}" ),
-                      ),
-                      ListTile(
-                        title: Text(
-                            "Total Creditos Cursados: ${widget.list[widget
-                                .index]['totalcreditoscursados']}" ),
-                      ),
-                      ListTile(
-                        title: Text( "% Creditos Cursados: ${widget.list[widget
-                            .index]['porcentagemcreditoscursados']}" ),
-                      ),
-                      ListTile(
-                        title: Text(
-                            "Periodo Ultíma Matricula: ${widget.list[widget
-                                .index]['periodoultimamatricula']}" ),
-                      ),
-                      ListTile(
-                        title: Text(
-                            "Ultimo Nivel Estudado: ${widget.list[widget
-                                .index]['ultimonivelestudado']}" ),
-                      ),
-                      ListTile(
-                        title: Text( "Média Ultimo Periodo: ${widget.list[widget
-                            .index]['promedioultimoperiodo']}" ),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    leading: Icon( Icons.monetization_on ),
-                    title: Text( 'Ver Situação Socio-económica' ),
-                    children: <Widget>[
-                      ListTile(
-                          title: Text(
-                              "Sexo: ${widget.list[widget.index]['sexo']}" )
-                      ),
-                      ListTile(
-                        title: Text( "Moradia: ${widget.list[widget
-                            .index]['moradia']}" ),
-                      ),
-                      ListTile(
-                        title: Text( "Trabalha: ${widget.list[widget
-                            .index]['trabalha']}" ),
-                      ),
-                      ListTile(
-                        title: Text( "Estado Civil: ${widget.list[widget
-                            .index]['estadocivil']}" ),
-                      ),
-                      ListTile(
-                        title: Text(
-                            "Escola: ${widget.list[widget.index]['escola']}" ),
-                      ),
-                      ListTile(
-                        title: Text( "Religiao: ${widget.list[widget
-                            .index]['religiao']}" ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+              )
+          ),
+          Container(
+            height: 50,
+            color: Colors.amber,
+            child: const Center(child: Text('Média para Perfil Normal no Curso')),
+          ),
+          Container(
+            width: 300,
+            height: 300,
+            child: RadarChart(
+              values: [1, 2, 4, 7, 9],
+              labels: [
+                "Créditos Cursados",
+                "Periodos Cursados",
+                "Nota Exame de Admissão",
+                "Média Geral",
+                "Média Último Período",
+              ],
+              maxValue: 12,
+              fillColor: Colors.amber,
             ),
-          ] ),
-      /*floatingActionButton: new FloatingActionButton(
-        child: new Icon(Icons.add),
-        onPressed: ()=>Navigator.of(context).push(
-            new MaterialPageRoute(
-              builder: (BuildContext context)=> new AddData(),
-            )
-        ),
-      ),*/
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        backgroundColor: Colors.red[900],
-        children: [
-          SpeedDialChild(
-            child: Icon( Icons.create ),
-            backgroundColor: Colors.yellow[700],
-            label: "Orientacao Pedagogica",
-            onTap: () =>
-                Navigator.of( context ).push(
-                    new MaterialPageRoute(
-                      builder: (
-                          BuildContext context) => new OrientacaoPedagogica( ),
-                    )
-                ),
           ),
-          SpeedDialChild(
-              child: Icon( Icons.speaker_notes ),
-              backgroundColor: Colors.yellow[700],
-              label: "Conversa com Aluno",
-              onTap: () => print( "first...." )
-          ),
-          SpeedDialChild(
-              child: Icon( Icons.book ),
-              backgroundColor: Colors.yellow[700],
-              label: "Sugerir Material Apoio",
-              onTap: () => print( "first...." )
-          ),
-          SpeedDialChild(
-              child: Icon( Icons.thumbs_up_down ),
-              backgroundColor: Colors.yellow[700],
-              label: "Tutoría",
-              onTap: () => print( "first...." )
-          )
         ],
-      ),
+      )
+
     );
   }
 }

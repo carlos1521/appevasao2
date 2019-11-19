@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\FlutterProjects\Flutter-CRUD-phpMyAdmin-master\android\app\src\main\assets"/><source path="D:\FlutterProjects\Flutter-CRUD-phpMyAdmin-master\build\app\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\FlutterProjects\Flutter-CRUD-phpMyAdmin-master\android\app\src\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\FlutterProjects\appevasao2\android\app\src\main\assets"/><source path="D:\FlutterProjects\appevasao2\build\app\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\FlutterProjects\appevasao2\android\app\src\debug\assets"/></dataSet></merger>

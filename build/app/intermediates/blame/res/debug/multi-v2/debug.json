@@ -1,6 +1,22 @@
 {
     "logs": [
         {
+            "outputFile": "D:\\FlutterProjects\\appevasao2\\build\\app\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\FlutterProjects\\appevasao2\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "347"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "D:\\FlutterProjects\\Flutter-CRUD-phpMyAdmin-master\\build\\app\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
             "map": [
                 {
