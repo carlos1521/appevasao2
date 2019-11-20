@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:multi_charts/multi_charts.dart';
-import 'package:mystore/estrategias/orientacaopedagogica.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import '../editdata.dart';
 import '../home.dart';
 import 'package:http/http.dart' as http;
 
@@ -82,11 +78,11 @@ class _Latab2State extends State<Latab2> {
             color: Colors.lightBlueAccent,
             child: const Center(child: Text('Média  do Aluno')),
           ),
-          Container(
+          /*Container(
               child: SfCircularChart(
 
               )
-          ),
+          ),*/
           Container(
             height: 50,
             color: Colors.amber,

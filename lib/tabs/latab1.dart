@@ -4,10 +4,6 @@ import 'package:mystore/estrategias/orientacaopedagogica.dart';
 import '../editdata.dart';
 import '../home.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_sparkline/flutter_sparkline.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_circular_chart/flutter_circular_chart.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class Latab1 extends StatefulWidget {

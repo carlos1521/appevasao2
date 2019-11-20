@@ -43,7 +43,7 @@ class _DetailState extends State<Detail> {
           children: <Widget>[
             new latab1.Latab1(list: widget.list, index: widget.index),
             new latab2.Latab2(list: widget.list, index: widget.index),
-            new latab2.Latab2(list: widget.list, index: widget.index),
+            new latab3.Latab3(list: widget.list, index: widget.index),
           ],
         ),
 
