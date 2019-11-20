@@ -4,7 +4,6 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import './home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'listagemalunos.dart';
 
 class Login extends StatefulWidget {
   @override

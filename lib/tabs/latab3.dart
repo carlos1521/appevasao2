@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:mystore/estrategias/conversa.dart';
+import 'package:mystore/estrategias/materialdidactico.dart';
 import 'package:mystore/estrategias/orientacaopedagogica.dart';
-import '../editdata.dart';
-import '../home.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:mystore/estrategias/tutoria.dart';
+import 'latab3_detalhe.dart';
 
 
 class Latab3 extends StatefulWidget {
@@ -55,7 +56,7 @@ class _Latab3State extends State<Latab3> {
                 Navigator.of( context ).push(
                     new MaterialPageRoute(
                       builder: (
-                          BuildContext context) => new OrientacaoPedagogica( ),
+                          BuildContext context) => new OrientacaoPedagogica(widget.list[widget.index]['idaluno']),
                     )
                 ),
           ),
@@ -63,19 +64,37 @@ class _Latab3State extends State<Latab3> {
               child: Icon( Icons.speaker_notes ),
               backgroundColor: Colors.yellow[700],
               label: "Conversa com Aluno",
-              onTap: () => print( "first...." )
+              onTap: () =>
+                  Navigator.of( context ).push(
+                      new MaterialPageRoute(
+                        builder: (
+                            BuildContext context) => new Conversa(widget.list[widget.index]['idaluno']),
+                      )
+                  ),
           ),
           SpeedDialChild(
               child: Icon( Icons.book ),
               backgroundColor: Colors.yellow[700],
               label: "Sugerir Material Apoio",
-              onTap: () => print( "first...." )
+              onTap: () =>
+                  Navigator.of( context ).push(
+                      new MaterialPageRoute(
+                        builder: (
+                            BuildContext context) => new Materialdidactico(widget.list[widget.index]['idaluno']),
+                      )
+                  ),
           ),
           SpeedDialChild(
               child: Icon( Icons.thumbs_up_down ),
               backgroundColor: Colors.yellow[700],
               label: "Tutoría",
-              onTap: () => print( "first...." )
+              onTap: () =>
+                  Navigator.of( context ).push(
+                      new MaterialPageRoute(
+                        builder: (
+                            BuildContext context) => new Tutoria(widget.list[widget.index]['idaluno']),
+                      )
+                  ),
           )
         ],
       ),
@@ -98,8 +117,7 @@ class ItemList extends StatelessWidget {
           child: new GestureDetector(
             onTap: ()=>Navigator.of(context).push(
                 new MaterialPageRoute(
-                    //builder: (BuildContext context)=> new Detail(list:list , index: i,)
-                  //builder: (BuildContext context)=> new Detail(index: i)
+                    builder: (BuildContext context)=> new Latab3_detalhe(list:list, index:i,)
                 )
             ),
             child: new Card(
@@ -107,7 +125,7 @@ class ItemList extends StatelessWidget {
                 title: new Text(list[i]['tipoestrategia']),
                 //leading: list[i]['tipoestrategia']=='ORIENTACAO PEDAGOGICA' ? Icon(Icons.school,color: Colors.blueAccent,) : Icon(Icons.collections_bookmark,color: Colors.blueAccent,),
                 leading: Icon(Icons.directions_run,color: Colors.blueAccent,),
-                subtitle: new Text("Código : ${list[i]['datainicio']}"),
+                subtitle: new Text("Data de Inicio : ${list[i]['datainicio']}"),
               ),
 
             ),
@@ -117,3 +135,4 @@ class ItemList extends StatelessWidget {
     );
   }
 }
+

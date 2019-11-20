@@ -78,11 +78,22 @@ class _Latab2State extends State<Latab2> {
             color: Colors.lightBlueAccent,
             child: const Center(child: Text('Média  do Aluno')),
           ),
-          /*Container(
-              child: SfCircularChart(
-
-              )
-          ),*/
+          Container(
+            width: 300,
+            height: 300,
+            child: RadarChart(
+              values: [1, 2, 4, 7, 9],
+              labels: [
+                "Créditos Cursados",
+                "Periodos Cursados",
+                "Nota Exame de Admissão",
+                "Média Geral",
+                "Média Último Período",
+              ],
+              maxValue: 12,
+              fillColor: Colors.lightBlueAccent,
+            ),
+          ),
           Container(
             height: 50,
             color: Colors.amber,

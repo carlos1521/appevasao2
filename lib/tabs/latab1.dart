@@ -116,10 +116,10 @@ class _Latab1State extends State<Latab1> {
                             onPressed: () =>
                                 Navigator.of( context ).push(
                                     new MaterialPageRoute(
-                                      builder: (
+                                      /*builder: (
                                           BuildContext context) => new EditData(
                                         list: widget.list,
-                                        index: widget.index, ),
+                                        index: widget.index, ),*/
                                     )
                                 ),
                           ),
@@ -228,7 +228,7 @@ class _Latab1State extends State<Latab1> {
             )
         ),
       ),*/
-      floatingActionButton: SpeedDial(
+      /*floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
         backgroundColor: Colors.red[900],
         children: [
@@ -263,7 +263,7 @@ class _Latab1State extends State<Latab1> {
               onTap: () => print( "first...." )
           )
         ],
-      ),
+      ),*/
     );
   }
 }
