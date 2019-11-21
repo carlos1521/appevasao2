@@ -1,62 +1,98 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:http/http.dart' as http;
+
+const request = "http://apiuladech.grupodcv.com/est_cur1con.php?curso=1";
+
+Future<Map> getData() async {
+  http.Response response= await http.get(request);
+  return json.decode(response.body);
+}
 
 class Mediasxcurso extends StatefulWidget {
-  Mediasxcurso() : super();
+  Mediasxcurso(this.i) : super();
+  int i;
+  final String title = "Charts Demo";
 
-  final String title = "DropDown Demo";
   @override
   _MediasxcursoState createState() => _MediasxcursoState();
 }
 
-class Company {
-  int id;
-  String name;
-
-  Company(this.id, this.name);
-
-  static List<Company> getCompanies() {
-    return <Company>[
-      Company(1, 'Apple'),
-      Company(2, 'Google'),
-      Company(3, 'Samsung'),
-      Company(4, 'Sony'),
-      Company(5, 'LG'),
-    ];
-  }
-}
-
 class _MediasxcursoState extends State<Mediasxcurso> {
 
-  List<Company> _companies = Company.getCompanies();
-  List<DropdownMenuItem<Company>> _dropdownMenuItems;
-  Company _selectedCompany;
+  //var url = "http://apiuladech.grupodcv.com/est_cur1con.php?curso=1";
+  //final response = http.post( url );
+
+
+  List<charts.Series> seriesList;
+  static List<charts.Series<Sales, String>> _createRandomData() {
+    //final random = Random();
+
+
+    final desktopSalesData = [
+      Sales('Total Créditos', 12.0),
+      Sales('Total Periodos', 55.00),
+      Sales('Nota EA', 9.40),
+      Sales('Média', 49.09),
+    ];
+
+    final tabletSalesData = [
+      Sales('Total Créditos', 40.06),
+      Sales('Total Periodos', 36.80),
+      Sales('Nota EA', 49.009),
+      Sales('Média', 27.02),
+    ];
+
+    return [
+      charts.Series<Sales, String>(
+        id: 'Sales',
+        domainFn: (Sales sales, _) => sales.year,
+        measureFn: (Sales sales, _) => sales.sales,
+        data: desktopSalesData,
+        fillColorFn: (Sales sales, _) {
+          return charts.MaterialPalette.blue.shadeDefault;
+        },
+      ),
+      charts.Series<Sales, String>(
+        id: 'Sales',
+        domainFn: (Sales sales, _) => sales.year,
+        measureFn: (Sales sales, _) => sales.sales,
+        data: tabletSalesData,
+        fillColorFn: (Sales sales, _) {
+          return charts.MaterialPalette.red.shadeDefault;
+        },
+      )
+    ];
+  }
+
+
+  barChart() {
+    return charts.BarChart(
+      seriesList,
+      animate: true,
+      vertical: true,
+      barGroupingType: charts.BarGroupingType.grouped,
+      defaultRenderer: charts.BarRendererConfig(
+        groupingType: charts.BarGroupingType.grouped,
+        strokeWidthPx: 1.0,
+      ),
+      domainAxis: charts.OrdinalAxisSpec(
+        renderSpec: charts.NoneRenderSpec(),
+      ),
+    );
+  }
+
 
   @override
   void initState() {
-    _dropdownMenuItems = buildDropdownMenuItems(_companies);
-    _selectedCompany = _dropdownMenuItems[0].value;
     super.initState();
+    seriesList = _createRandomData();
   }
 
 
-  List<DropdownMenuItem<Company>> buildDropdownMenuItems(List companies) {
-    List<DropdownMenuItem<Company>> items = List();
-    for (Company company in companies) {
-      items.add(
-        DropdownMenuItem(
-          value: company,
-          child: Text(company.name),
-        ),
-      );
-    }
-    return items;
-  }
-
-  onChangeDropdownItem(Company selectedCompany) {
-    setState(() {
-      _selectedCompany = selectedCompany;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,33 +102,19 @@ class _MediasxcursoState extends State<Mediasxcurso> {
         backgroundColor: Colors.red[900],
         centerTitle: true,
       ),
-      body: new Container(
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Select a company"),
-              SizedBox(
-                height: 20.0,
-              ),
-              DropdownButton(
-                value: _selectedCompany,
-                items: _dropdownMenuItems,
-                onChanged: onChangeDropdownItem,
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Text('Selected: ${_selectedCompany.name}'),
-            ],
-          ),
-        ),
+      body: Container(
+        padding: EdgeInsets.all(20.0),
+        child: barChart(),
       ),
     );
 
   }
 }
 
+class Sales {
+  final String year;
+  final double sales;
 
+  Sales(this.year, this.sales);
+}
 

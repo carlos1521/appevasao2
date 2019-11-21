@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mystore/mediasxcurso.dart';
 import 'listagemalunos.dart';
+import 'listagemcursos.dart';
 import 'login.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -62,7 +61,7 @@ Widget build (BuildContext context){
               title: new Text("Médias por Curso"),
               trailing: new Icon(Icons.multiline_chart),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => Mediasxcurso(),
+                builder: (BuildContext context) => ListagemCursos(),
               )),
             ),
             new Divider(),

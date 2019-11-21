@@ -5,6 +5,8 @@ import './home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
+import 'homealuno.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => new _LoginState();
@@ -47,7 +49,7 @@ class _LoginState extends State<Login> {
       //return print(response.body);
       return Navigator.push(
           context, MaterialPageRoute(
-        builder: (context)=> Home(jsonDecode(response.body)),
+        builder: jsonDecode(response.body)[0]['nivel']=='Aluno'? (context)=> Homealuno(jsonDecode(response.body)) : (context)=> Home(jsonDecode(response.body)),
       )
       );
     }
