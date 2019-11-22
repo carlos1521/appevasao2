@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:mystore/view_professor/homeprofessor.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import './home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'homealuno.dart';
+import 'package:mystore/view_aluno/homealuno.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -48,7 +49,10 @@ class _LoginState extends State<Login> {
       //return print(response.body);
       return Navigator.push(
           context, MaterialPageRoute(
-        builder: jsonDecode(response.body)[0]['nivel']=='Aluno'? (context)=> Homealuno(jsonDecode(response.body)) : (context)=> Home(jsonDecode(response.body)),
+        //builder: jsonDecode(response.body)[0]['nivel']=='Aluno'? (context)=> Homealuno(jsonDecode(response.body)) : (context)=> Home(jsonDecode(response.body)),
+        // value: (i == 1) ? 1 : (i == 2) ? 2 : 0
+        builder: jsonDecode(response.body)[0]['nivel']=='Aluno' ? (context)=> Homealuno(jsonDecode(response.body)) :
+        jsonDecode(response.body)[0]['nivel']=='Administrador' ? (context)=> Home(jsonDecode(response.body)) :  (context)=> Homeprofessor(jsonDecode(response.body))
       )
       );
     }
