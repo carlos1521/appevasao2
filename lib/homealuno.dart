@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'listagemalunos.dart';
-import 'listagemcursos.dart';
+import 'package:mystore/view_aluno/listagemacoes.dart';
 import 'login.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -15,6 +14,8 @@ class Homealuno extends StatefulWidget{
 }
 
 class _Homealuno extends State<Homealuno>{
+  bool selected = false;
+
   @override
   Widget build (BuildContext context){
     return new Scaffold(
@@ -31,7 +32,7 @@ class _Homealuno extends State<Homealuno>{
                   currentAccountPicture: new GestureDetector(
                       onTap: () => print("Este é o usuário atual"),
                       child: new CircleAvatar(
-                        backgroundImage: new AssetImage("images/user-default.png"),
+                        backgroundImage: new AssetImage(widget.itemJson[0]['foto']),
                       )
                   ),
                   decoration: new BoxDecoration(
@@ -53,7 +54,7 @@ class _Homealuno extends State<Homealuno>{
                   title: new Text("Ações Cadastradas"),
                   trailing: new Icon(Icons.school),
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => ListagemAlunos(),
+                    builder: (BuildContext context) => Listagemacoes(widget.itemJson),
                   )),
                 ),
                 new Divider(),
@@ -68,27 +69,27 @@ class _Homealuno extends State<Homealuno>{
 
           )
       ),
-      body: StaggeredGridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.0,
-        mainAxisSpacing: 12.0,
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        children: <Widget>[
-          MyItems(Icons.select_all,"Total de Alunos",0xffed622b),
-          MyItems(Icons.insert_chart,"Total Alunos Analisados",0xff19a8ff),
-          MyItems(Icons.warning,"Com Risco",0xfff32525),
-          MyItems(Icons.check_circle,"Sem Risco",0xff17d100),
-        ],
-        staggeredTiles: [
-          StaggeredTile.extent(2, 130.0),
-          StaggeredTile.extent(2, 130.0),
-          StaggeredTile.extent(1, 130.0),
-          StaggeredTile.extent(1, 130.0),
-        ],
+      body:
+      GestureDetector(
+        onTap: () {
+          setState(() {
+            selected = !selected;
+          });
+        },
+        child: Center(
+          child: AnimatedContainer(
+            width: selected ? 200.0 : 150.0,
+            height: selected ? 150.0 : 200.0,
+            color: selected ? Colors.red[900] : Colors.blue[900],
+            alignment:
+            selected ? Alignment.center : AlignmentDirectional.topCenter,
+            duration: Duration(seconds: 2),
+            curve: Curves.fastOutSlowIn,
+            child: Text(
+              "Bem-vindo ${widget.itemJson[0]['nome']}", style: new TextStyle( color: Colors.white , fontSize: 20.0), ),
+          ),
+        ),
       ),
-      /*new Center(
-        child: new Text("App para Deteção e Monitoramento de Alunos com Risco de Evasão", style: new TextStyle(fontSize: 35.0),),
-      )*/
     );
   }
 

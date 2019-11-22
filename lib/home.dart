@@ -31,7 +31,7 @@ Widget build (BuildContext context){
               currentAccountPicture: new GestureDetector(
                 onTap: () => print("Este é o usuário atual"),
                 child: new CircleAvatar(
-                  backgroundImage: new AssetImage("images/user-default.png"),
+                  backgroundImage: new AssetImage(widget.itemJson[0]['foto']),
                 )
               ),
               decoration: new BoxDecoration(
@@ -82,10 +82,10 @@ Widget build (BuildContext context){
         mainAxisSpacing: 12.0,
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         children: <Widget>[
-          MyItems(Icons.select_all,"Total de Alunos",0xffed622b),
-          MyItems(Icons.insert_chart,"Total Alunos Analisados",0xff19a8ff),
-          MyItems(Icons.warning,"Com Risco",0xfff32525),
-          MyItems(Icons.check_circle,"Sem Risco",0xff17d100),
+          MyItems(Icons.select_all,"Total de Alunos: 39461",0xffed622b),
+          MyItems(Icons.insert_chart,"Total Alunos Analisados: 1098",0xff19a8ff),
+          MyItems(Icons.warning,"Com Risco: 415",0xfff32525),
+          MyItems(Icons.check_circle,"Sem Risco: 103",0xff17d100),
         ],
         staggeredTiles: [
           StaggeredTile.extent(2, 130.0),
@@ -120,6 +120,7 @@ Material MyItems(IconData icon, String heading, int color){
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(heading,
+                          maxLines: 2,
                           style: TextStyle(
                             color: new Color(color),
                             fontSize: 20.0,

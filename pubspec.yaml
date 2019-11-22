@@ -18,6 +18,7 @@ dependencies:
   flutter_staggered_grid_view: "^0.2.5"
   datetime_picker_formfield: ^0.4.3
   charts_flutter: ^0.8.1
+  fl_chart: ^0.4.2
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,10 @@ flutter:
     - images/logoerp.png
     - images/user.jpg
     - images/backmenu.jpg
+    - images/45784512.jpg
+    - images/70309620.jpg
+    - images/78320014.jpg
+    - images/user-default.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

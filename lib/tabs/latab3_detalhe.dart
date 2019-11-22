@@ -23,35 +23,55 @@ class _Latab3_detalheState extends State<Latab3_detalhe> {
   @override
   Widget build(BuildContext context) {
    return new Scaffold(
+       appBar: new AppBar(
+         title: new Text("EvApp"),
+         backgroundColor: Colors.red[900],
+         centerTitle: true,
+       ),
        body:
-       Column(
-         children: <Widget>[
-           new Padding(
-             padding: const EdgeInsets.only( top: 30.0 ), ),
-           new Text( widget.list[widget.index]['idestrategia'],
-             style: new TextStyle(
-                 fontSize: 20.0, fontWeight: FontWeight.bold ), ),
-           new Text(
-             "Descrição : ${widget.list[widget.index]['descripcion']}",
-             style: new TextStyle( fontSize: 18.0 ), ),
-           new Text(
-             "Data Inicio : ${widget.list[widget.index]['datainicio']}",
-             style: new TextStyle( fontSize: 18.0 ), ),
-           new Text(
-             "Hora Inicio : ${widget.list[widget.index]['horainicio']}",
-             style: new TextStyle( fontSize: 18.0 ), ),
-           new Text(
-             "Data Fim : ${widget.list[widget.index]['datafim']}",
-             style: new TextStyle( fontSize: 18.0 ), ),
-           new Text(
-             "Hora Fim : ${widget.list[widget.index]['horafim']}",
-             style: new TextStyle( fontSize: 18.0 ), ),
-           new Text(
-             "Sala : ${widget.list[widget.index]['sala']}",
-             style: new TextStyle( fontSize: 18.0 ), ),
-           new Padding(
-             padding: const EdgeInsets.only( top: 30.0 ), ),
-         ],
+       SingleChildScrollView(
+         child: Padding(
+           padding: const EdgeInsets.all(12.0),
+           child: Column(
+             children: <Widget>[
+               Card(
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   children: <Widget>[
+                     ListTile(
+                       title: Text("ID Estrategia"),
+                       subtitle: Text(widget.list[widget.index]['idestrategia']),
+                     ),
+                     ListTile(
+                       title: Text("Descrição"),
+                       subtitle: Text("${widget.list[widget.index]['descripcion']}"),
+                     ),
+                     ListTile(
+                       title: Text("Data Inicio"),
+                       subtitle: Text("${widget.list[widget.index]['datainicio']}"),
+                     ),
+                     ListTile(
+                       title: Text("Hora Inicio"),
+                       subtitle: Text("${widget.list[widget.index]['horainicio']}"),
+                     ),
+                     ListTile(
+                       title: Text("Data Fim"),
+                       subtitle: Text("${widget.list[widget.index]['datafim']}"),
+                     ),
+                     ListTile(
+                       title: Text("Hora Fim"),
+                       subtitle: Text("${widget.list[widget.index]['horafim']}"),
+                     ),
+                     ListTile(
+                       title: Text("Sala"),
+                       subtitle: Text("${widget.list[widget.index]['sala']}"),
+                     ),
+                   ],
+                 ),
+               ),
+             ],
+           ),
+         ),
        )
    );
   }

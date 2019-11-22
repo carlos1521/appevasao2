@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:mystore/estrategias/orientacaopedagogica.dart';
-import '../editdata.dart';
 import '../home.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'BarChartSample2.dart';
 import 'mediasxcurso.dart';
 
 
@@ -27,7 +28,7 @@ class _MediasxcursoState extends State<ListagemCursos> {
               onPressed: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Mediasxcurso(1)),
+                  MaterialPageRoute(builder: (context) => BarChartSample2(1)),
                 );// 11
               },
               textColor: Colors.black,
@@ -41,7 +42,10 @@ class _MediasxcursoState extends State<ListagemCursos> {
           Container(
             child: RaisedButton(
               onPressed: (){
-                // 20
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BarChartSample2(2)),
+                );// 20
               },
               textColor: Colors.black,
               color: Color(0xFFFFCC00),
